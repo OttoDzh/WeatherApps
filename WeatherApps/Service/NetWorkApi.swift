@@ -8,8 +8,5 @@
 import Foundation
 
 class Network {
-    
     static let apiKey = "20bf6f8e12bc481d36bd526bbb31af09"
-    
-    
 }

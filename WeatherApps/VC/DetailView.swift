@@ -6,59 +6,74 @@
 //
 
 import UIKit
+import Gifu
 
 class DetailView: UIView {
-    
-    let table = UITableView()
+
     let cityName = UILabel(text: "CityName", font: ODFonts.titleLabelFont)
     let tempLabel = UILabel(text: "temp", font: ODFonts.boldTextFont)
-    let cloudyLabel = UILabel(text: "Cloudy", font: ODFonts.boldTextFont)
+    let feelsLikeLabel = UILabel(text: "Feels like", font: ODFonts.avenirFont)
+    let borderActivityLabel = UILabel(text: "", font: ODFonts.titleLabelFont)
+    let descLabel = UILabel(text: "", font: ODFonts.avenirFont)
+    let windSpeedlabel = UILabel(text: "", font: ODFonts.avenirFont)
+    let gifBg = GIFImageView()
     
     init() {
         super.init(frame: CGRect())
-        
         setupViews()
         setupConstraints()
     }
     
     func setupViews() {
-        table.register(DetailCell.self, forCellReuseIdentifier: DetailCell.reuseId)
-        table.layer.cornerRadius = 6
-        table.backgroundColor = .black
-        backgroundColor = .black
         cityName.textColor = .white
         tempLabel.textColor = .white
         tempLabel.font = UIFont(name: "AppleSDGothicNeo-bold", size: 48)
-        cloudyLabel.textColor = .white
-       
-        
+        gifBg.contentMode = .scaleAspectFill
+        feelsLikeLabel.textColor = .white
+        borderActivityLabel.textColor = .white
+        borderActivityLabel.textAlignment = .center
+        borderActivityLabel.lineBreakMode = .byWordWrapping
+        borderActivityLabel.numberOfLines = 12
+        descLabel.textColor = .white
+        descLabel.textAlignment = .center
+        descLabel.lineBreakMode = .byWordWrapping
+        descLabel.numberOfLines = 12
+        windSpeedlabel.numberOfLines = 2
+        windSpeedlabel.textColor = .white
     }
     func setupConstraints() {
         
-        addSubview(table)
+        addSubview(gifBg)
         addSubview(cityName)
         addSubview(tempLabel)
-        addSubview(cloudyLabel)
-       
+        addSubview(feelsLikeLabel)
+        addSubview(borderActivityLabel)
+        addSubview(descLabel)
+        addSubview(windSpeedlabel)
+        Helper.tamicOff(views: [cityName,tempLabel,gifBg,feelsLikeLabel,borderActivityLabel,descLabel,windSpeedlabel])
         
-        Helper.tamicOff(views: [table,cityName,tempLabel,cloudyLabel])
-        
-        NSLayoutConstraint.activate([table.topAnchor.constraint(equalTo: topAnchor, constant: 250),
-                                     table.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-                                     table.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-                                     table.bottomAnchor.constraint(equalTo: bottomAnchor),
+        NSLayoutConstraint.activate([
                                      cityName.topAnchor.constraint(equalTo: topAnchor, constant: 50),
                                      cityName.centerXAnchor.constraint(equalTo: centerXAnchor),
                                      tempLabel.topAnchor.constraint(equalTo: cityName.bottomAnchor, constant: 25),
                                      tempLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-                                     cloudyLabel.topAnchor.constraint(equalTo: tempLabel.bottomAnchor, constant: 10),
-                                     cloudyLabel.centerXAnchor.constraint(equalTo: centerXAnchor)])
-        
+                                     feelsLikeLabel.topAnchor.constraint(equalTo: tempLabel.bottomAnchor, constant: 5),
+                                     feelsLikeLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+                                     gifBg.topAnchor.constraint(equalTo: topAnchor),
+                                     gifBg.bottomAnchor.constraint(equalTo: bottomAnchor),
+                                     gifBg.leadingAnchor.constraint(equalTo: leadingAnchor),
+                                     gifBg.trailingAnchor.constraint(equalTo: trailingAnchor),
+                                     borderActivityLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+                                     borderActivityLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+                                     borderActivityLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
+                                     borderActivityLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
+                                     borderActivityLabel.heightAnchor.constraint(equalToConstant: 300),
+                                     descLabel.topAnchor.constraint(equalTo: feelsLikeLabel.bottomAnchor, constant: 12),
+                                     descLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+                                     windSpeedlabel.topAnchor.constraint(equalTo: descLabel.bottomAnchor, constant: 12),
+                                     windSpeedlabel.centerXAnchor.constraint(equalTo: centerXAnchor)])
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-  
 }

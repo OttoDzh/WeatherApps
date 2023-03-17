@@ -6,45 +6,24 @@
 //
 
 import UIKit
+import Gifu
+
 
 class DetailVC: UIViewController {
     
     let detailView = DetailView()
-    var listArray = [List]()
+    let time = Date()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.view = detailView
-        detailView.table.delegate = self
-        detailView.table.dataSource = self
-        
-        
-        NetworkService.getLatLon(city: "Moscow") { latlon in
+        NetworkService.getInfoDate { border in
             DispatchQueue.main.async {
-                
-                NetworkService.getWeatherForFiveDays(latitude: latlon.first!.lat, longitute: latlon.first!.lon) { weatherFiveDays in
-                    self.listArray = weatherFiveDays.list
-                    DispatchQueue.main.async {
-                        self.detailView.table.reloadData()
-                    }
-                }
+                self.detailView.borderActivityLabel.text = "Here is some activity for you: \(border.activity)"
             }
+          
         }
+
     }
 }
 
-extension DetailVC: UITableViewDataSource,UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        listArray.count
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: DetailCell.reuseId, for: indexPath) as! DetailCell
-        let deg = listArray[indexPath.row]
-        cell.tempLabbel.text = "\(Int(deg.main.temp - 273))°"
-        cell.cityName.text = deg.dt_txt
-        
-       return cell
-    }
-    
-    
-}

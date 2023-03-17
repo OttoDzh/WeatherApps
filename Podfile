@@ -8,5 +8,5 @@ target 'WeatherApps' do
   # Pods for WeatherApps
 
 pod 'Gifu'
-
+pod 'Alamofire'
 end

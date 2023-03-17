@@ -1,2 +1,3 @@
 ${PODS_ROOT}/Target Support Files/Pods-WeatherApps/Pods-WeatherApps-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/Gifu/Gifu.framework

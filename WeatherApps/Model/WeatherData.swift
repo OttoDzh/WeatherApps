@@ -13,6 +13,7 @@ struct WeatherData: Codable {
     let main: Main
     let wind: Wind
     var name: String
+    var timezone, id: Int
     
     
 }
