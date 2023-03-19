@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0A197BD3FD9F54AFE6CAAE1F /* Pods_WeatherApps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03C346ABE6A846E0743195E0 /* Pods_WeatherApps.framework */; };
+		FB0B319029C7234D00C931CF /* TimeWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0B318F29C7234D00C931CF /* TimeWorker.swift */; };
+		FB119A0A29C59B6600267DC9 /* clouds.gif in Resources */ = {isa = PBXBuildFile; fileRef = FB119A0929C59B6600267DC9 /* clouds.gif */; };
+		FB119A0C29C59C0200267DC9 /* cloudsNight.gif in Resources */ = {isa = PBXBuildFile; fileRef = FB119A0B29C59C0200267DC9 /* cloudsNight.gif */; };
 		FB38C8FD29BA617400D68386 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB38C8FC29BA617400D68386 /* DetailVC.swift */; };
 		FB38C8FF29BA618100D68386 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB38C8FE29BA618100D68386 /* DetailView.swift */; };
 		FB47B26929BFA92F00027EB8 /* WeatherCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB47B26829BFA92F00027EB8 /* WeatherCondition.swift */; };
@@ -42,15 +45,15 @@
 		FB9A97BE29C0E88200E5B96E /* clearskyNight.gif in Resources */ = {isa = PBXBuildFile; fileRef = FB9A97BD29C0E88200E5B96E /* clearskyNight.gif */; };
 		FB9A97C029C0E88900E5B96E /* snowNight.gif in Resources */ = {isa = PBXBuildFile; fileRef = FB9A97BF29C0E88900E5B96E /* snowNight.gif */; };
 		FBACD12A29BB900A007BB94A /* NetWorkApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBACD12929BB900A007BB94A /* NetWorkApi.swift */; };
-		FBD9B23529C4E18600BC3598 /* clouds.gif in Resources */ = {isa = PBXBuildFile; fileRef = FBD9B23429C4E18600BC3598 /* clouds.gif */; };
-		FBD9B23729C4E22200BC3598 /* cloudsNight.gif in Resources */ = {isa = PBXBuildFile; fileRef = FBD9B23629C4E22200BC3598 /* cloudsNight.gif */; };
-		FBD9B23929C4F11200BC3598 /* WeatherModelSelf.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD9B23829C4F11200BC3598 /* WeatherModelSelf.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		03C346ABE6A846E0743195E0 /* Pods_WeatherApps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherApps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		09C3E36CAF1D072BE4B7D5AE /* Pods-WeatherApps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApps.release.xcconfig"; path = "Target Support Files/Pods-WeatherApps/Pods-WeatherApps.release.xcconfig"; sourceTree = "<group>"; };
 		8B9A6CBFEE5560DE957AB67D /* Pods-WeatherApps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApps.debug.xcconfig"; path = "Target Support Files/Pods-WeatherApps/Pods-WeatherApps.debug.xcconfig"; sourceTree = "<group>"; };
+		FB0B318F29C7234D00C931CF /* TimeWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeWorker.swift; sourceTree = "<group>"; };
+		FB119A0929C59B6600267DC9 /* clouds.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = clouds.gif; sourceTree = "<group>"; };
+		FB119A0B29C59C0200267DC9 /* cloudsNight.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = cloudsNight.gif; sourceTree = "<group>"; };
 		FB38C8FC29BA617400D68386 /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 		FB38C8FE29BA618100D68386 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		FB47B26829BFA92F00027EB8 /* WeatherCondition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCondition.swift; sourceTree = "<group>"; };
@@ -87,9 +90,6 @@
 		FB9A97BD29C0E88200E5B96E /* clearskyNight.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = clearskyNight.gif; sourceTree = "<group>"; };
 		FB9A97BF29C0E88900E5B96E /* snowNight.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = snowNight.gif; sourceTree = "<group>"; };
 		FBACD12929BB900A007BB94A /* NetWorkApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWorkApi.swift; sourceTree = "<group>"; };
-		FBD9B23429C4E18600BC3598 /* clouds.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = clouds.gif; sourceTree = "<group>"; };
-		FBD9B23629C4E22200BC3598 /* cloudsNight.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = cloudsNight.gif; sourceTree = "<group>"; };
-		FBD9B23829C4F11200BC3598 /* WeatherModelSelf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModelSelf.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,8 +126,8 @@
 			children = (
 				FB5F017E29C25E9200AA853D /* addCitySound.mp3 */,
 				FB5F017C29C25CCC00AA853D /* deleteSound.mp3 */,
-				FBD9B23429C4E18600BC3598 /* clouds.gif */,
-				FBD9B23629C4E22200BC3598 /* cloudsNight.gif */,
+				FB119A0929C59B6600267DC9 /* clouds.gif */,
+				FB119A0B29C59C0200267DC9 /* cloudsNight.gif */,
 				FB9A97BB29C0E70F00E5B96E /* rainNight.gif */,
 				FB4D0FA829BDD450009B4438 /* rain.gif */,
 				FB4D0FB429BE609D009B4438 /* drizzle.gif */,
@@ -193,6 +193,7 @@
 			children = (
 				FB6046A829B8D0D500A5C15E /* NetWorkService.swift */,
 				FBACD12929BB900A007BB94A /* NetWorkApi.swift */,
+				FB0B318F29C7234D00C931CF /* TimeWorker.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -204,7 +205,6 @@
 				FB6046A129B8D0C700A5C15E /* WeatherData.swift */,
 				FB4D0FB829BE7375009B4438 /* BorderActivity.swift */,
 				FB47B26829BFA92F00027EB8 /* WeatherCondition.swift */,
-				FBD9B23829C4F11200BC3598 /* WeatherModelSelf.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -286,7 +286,7 @@
 			files = (
 				FB4D0FAD29BDD5BC009B4438 /* snow.gif in Resources */,
 				FB9A97C029C0E88900E5B96E /* snowNight.gif in Resources */,
-				FBD9B23529C4E18600BC3598 /* clouds.gif in Resources */,
+				FB119A0A29C59B6600267DC9 /* clouds.gif in Resources */,
 				FB5F017F29C25E9200AA853D /* addCitySound.mp3 in Resources */,
 				FB4D0FA729BDD3C4009B4438 /* thunderstorm.gif in Resources */,
 				FB60468929B8D08A00A5C15E /* LaunchScreen.storyboard in Resources */,
@@ -297,7 +297,7 @@
 				FB9A97BC29C0E70F00E5B96E /* rainNight.gif in Resources */,
 				FB60468629B8D08A00A5C15E /* Assets.xcassets in Resources */,
 				FB4D0FAF29BDD6AB009B4438 /* clearsky.gif in Resources */,
-				FBD9B23729C4E22200BC3598 /* cloudsNight.gif in Resources */,
+				FB119A0C29C59C0200267DC9 /* cloudsNight.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,7 +354,6 @@
 				FB6046AF29B8D0E800A5C15E /* MainView.swift in Sources */,
 				FBACD12A29BB900A007BB94A /* NetWorkApi.swift in Sources */,
 				FB60469D29B8D0B700A5C15E /* StackViewExtension.swift in Sources */,
-				FBD9B23929C4F11200BC3598 /* WeatherModelSelf.swift in Sources */,
 				FB60467D29B8D08900A5C15E /* AppDelegate.swift in Sources */,
 				FB6046AE29B8D0E800A5C15E /* MyCell.swift in Sources */,
 				FB38C8FD29BA617400D68386 /* DetailVC.swift in Sources */,
@@ -366,6 +365,7 @@
 				FB4D0FB929BE7375009B4438 /* BorderActivity.swift in Sources */,
 				FB6046A729B8D0C700A5C15E /* GeoData.swift in Sources */,
 				FB8F482129BC805600078120 /* WeatherModel.xcdatamodeld in Sources */,
+				FB0B319029C7234D00C931CF /* TimeWorker.swift in Sources */,
 				FB47B26929BFA92F00027EB8 /* WeatherCondition.swift in Sources */,
 				FB60469A29B8D0B700A5C15E /* ButtonExtension.swift in Sources */,
 				FB60469E29B8D0B700A5C15E /* Helper.swift in Sources */,

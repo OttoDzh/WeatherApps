@@ -17,6 +17,7 @@ class DetailView: UIView {
     let descLabel = UILabel(text: "", font: ODFonts.avenirFont)
     let windSpeedlabel = UILabel(text: "", font: ODFonts.avenirFont)
     let gifBg = GIFImageView()
+    let localTimeLabel = UILabel(text: "Local time 14:54", font: ODFonts.avenirFont)
     
     init() {
         super.init(frame: CGRect())
@@ -40,6 +41,7 @@ class DetailView: UIView {
         descLabel.numberOfLines = 12
         windSpeedlabel.numberOfLines = 2
         windSpeedlabel.textColor = .white
+        localTimeLabel.textColor = .white
     }
     func setupConstraints() {
         
@@ -50,7 +52,8 @@ class DetailView: UIView {
         addSubview(borderActivityLabel)
         addSubview(descLabel)
         addSubview(windSpeedlabel)
-        Helper.tamicOff(views: [cityName,tempLabel,gifBg,feelsLikeLabel,borderActivityLabel,descLabel,windSpeedlabel])
+        addSubview(localTimeLabel)
+        Helper.tamicOff(views: [cityName,tempLabel,gifBg,feelsLikeLabel,borderActivityLabel,descLabel,windSpeedlabel,localTimeLabel])
         
         NSLayoutConstraint.activate([
                                      cityName.topAnchor.constraint(equalTo: topAnchor, constant: 50),
@@ -71,7 +74,9 @@ class DetailView: UIView {
                                      descLabel.topAnchor.constraint(equalTo: feelsLikeLabel.bottomAnchor, constant: 12),
                                      descLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
                                      windSpeedlabel.topAnchor.constraint(equalTo: descLabel.bottomAnchor, constant: 12),
-                                     windSpeedlabel.centerXAnchor.constraint(equalTo: centerXAnchor)])
+                                     windSpeedlabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+                                     localTimeLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
+                                     localTimeLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24)])
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

@@ -12,12 +12,10 @@ struct GeoDatum: Codable {
     let localNames: [String: String]?
     let lat, lon: Double
  
-
     enum CodingKeys: String, CodingKey {
         case name
         case localNames = "local_names"
         case lat, lon
     }
 }
-
 typealias GeoData = [GeoDatum]

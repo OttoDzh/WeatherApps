@@ -17,11 +17,12 @@ class MyCell: UITableViewCell {
     let descrLabel = UILabel(text: "Cloudly", font: ODFonts.regulatTextFont)
     let minTempLabel = UILabel(text: "L:9°", font: ODFonts.avenirFont)
     let maxTempLabel = UILabel(text: "H:13°", font: ODFonts.avenirFont)
+    let localTimeLabel = UILabel(text: "14:20", font: ODFonts.avenirFont)
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: MyCell.reuseId)
         backgroundColor = .black
-       let whiteArray = [cityName,tempLabbel,descrLabel,minTempLabel,maxTempLabel]
+       let whiteArray = [cityName,tempLabbel,descrLabel,minTempLabel,maxTempLabel,localTimeLabel]
         for i in whiteArray {
             i.textColor = .white
         }
@@ -34,11 +35,14 @@ class MyCell: UITableViewCell {
         addSubview(tempLabbel)
         addSubview(descrLabel)
         addSubview(minMaxStack)
+        addSubview(localTimeLabel)
         minTempLabel.font = UIFont(name: "AvenirNext-BOLD", size: 12)
         maxTempLabel.font = UIFont(name: "AvenirNext-BOLD", size: 12)
-        Helper.tamicOff(views: [cityName,tempLabbel,descrLabel,minMaxStack,gifBg])
+        Helper.tamicOff(views: [cityName,tempLabbel,descrLabel,minMaxStack,gifBg,localTimeLabel])
         NSLayoutConstraint.activate([cityName.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
                                      cityName.topAnchor.constraint(equalTo: topAnchor,constant: 4),
+                                     localTimeLabel.topAnchor.constraint(equalTo: cityName.bottomAnchor, constant: 4),
+                                     localTimeLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
                                      descrLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
                                      descrLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4),
                                      tempLabbel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),

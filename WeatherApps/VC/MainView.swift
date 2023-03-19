@@ -11,8 +11,9 @@ class MainView: UIView {
 
     let weatherLabel = UILabel(text: "Weather", font: ODFonts.titleLabelFont)
     let addCityButton = UIButton(title: "AddCity", bgColor: .black, textColor: .white, font: ODFonts.avenirFont, cornerRadius: 12)
+    let searchBar = UISearchBar()
     let table = UITableView()
-
+    
     init() {
         super.init(frame: CGRect())
         setupViews()
@@ -26,13 +27,24 @@ class MainView: UIView {
         table.separatorStyle = .none
         backgroundColor = .black
         weatherLabel.textColor = .white
+        weatherLabel.layer.cornerRadius = 15
         table.separatorStyle = .singleLine
+        searchBar.searchBarStyle = UISearchBar.Style.prominent
+        searchBar.placeholder = " Search..."
+        searchBar.sizeToFit()
+        searchBar.isTranslucent = true
+        searchBar.backgroundColor = .clear
+        searchBar.backgroundImage = UIImage()
+        searchBar.tintColor = .white
+        searchBar.layer.cornerRadius = 12
+        searchBar.searchTextField.textColor = .white
     }
     func setupConstraints() {
         addSubview(table)
         addSubview(weatherLabel)
         addSubview(addCityButton)
-        Helper.tamicOff(views: [table,weatherLabel,addCityButton])
+        addSubview(searchBar)
+        Helper.tamicOff(views: [table,weatherLabel,addCityButton,searchBar])
         NSLayoutConstraint.activate([table.topAnchor.constraint(equalTo: topAnchor, constant: 150),
                                      table.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
                                      table.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
@@ -40,7 +52,13 @@ class MainView: UIView {
                                      weatherLabel.topAnchor.constraint(equalTo: topAnchor, constant: 48),
                                      weatherLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
                                      addCityButton.topAnchor.constraint(equalTo: topAnchor, constant: 48),
-                                     addCityButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)])
+                                     addCityButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+                                     weatherLabel.widthAnchor.constraint(equalToConstant: 350),
+                                     weatherLabel.heightAnchor.constraint(equalToConstant: 50),
+                                     searchBar.topAnchor.constraint(equalTo: weatherLabel.bottomAnchor, constant: 8),
+                                     searchBar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
+                                     searchBar.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+                                     searchBar.heightAnchor.constraint(equalToConstant: 40)])
     }
     
     required init?(coder: NSCoder) {
