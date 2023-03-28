@@ -13,7 +13,6 @@
 		FB119A0C29C59C0200267DC9 /* cloudsNight.gif in Resources */ = {isa = PBXBuildFile; fileRef = FB119A0B29C59C0200267DC9 /* cloudsNight.gif */; };
 		FB38C8FD29BA617400D68386 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB38C8FC29BA617400D68386 /* DetailVC.swift */; };
 		FB38C8FF29BA618100D68386 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB38C8FE29BA618100D68386 /* DetailView.swift */; };
-		FB47B26929BFA92F00027EB8 /* WeatherCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB47B26829BFA92F00027EB8 /* WeatherCondition.swift */; };
 		FB4D0FA729BDD3C4009B4438 /* thunderstorm.gif in Resources */ = {isa = PBXBuildFile; fileRef = FB4D0FA629BDD3C4009B4438 /* thunderstorm.gif */; };
 		FB4D0FA929BDD450009B4438 /* rain.gif in Resources */ = {isa = PBXBuildFile; fileRef = FB4D0FA829BDD450009B4438 /* rain.gif */; };
 		FB4D0FAD29BDD5BC009B4438 /* snow.gif in Resources */ = {isa = PBXBuildFile; fileRef = FB4D0FAC29BDD5BC009B4438 /* snow.gif */; };
@@ -41,6 +40,7 @@
 		FB6046AE29B8D0E800A5C15E /* MyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6046AB29B8D0E800A5C15E /* MyCell.swift */; };
 		FB6046AF29B8D0E800A5C15E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6046AC29B8D0E800A5C15E /* MainView.swift */; };
 		FB8F482129BC805600078120 /* WeatherModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FB8F481F29BC805600078120 /* WeatherModel.xcdatamodeld */; };
+		FB90F4AB29CB92700080FEFD /* WeatherConditionId.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB90F4AA29CB92700080FEFD /* WeatherConditionId.swift */; };
 		FB9A97BC29C0E70F00E5B96E /* rainNight.gif in Resources */ = {isa = PBXBuildFile; fileRef = FB9A97BB29C0E70F00E5B96E /* rainNight.gif */; };
 		FB9A97BE29C0E88200E5B96E /* clearskyNight.gif in Resources */ = {isa = PBXBuildFile; fileRef = FB9A97BD29C0E88200E5B96E /* clearskyNight.gif */; };
 		FB9A97C029C0E88900E5B96E /* snowNight.gif in Resources */ = {isa = PBXBuildFile; fileRef = FB9A97BF29C0E88900E5B96E /* snowNight.gif */; };
@@ -56,7 +56,6 @@
 		FB119A0B29C59C0200267DC9 /* cloudsNight.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = cloudsNight.gif; sourceTree = "<group>"; };
 		FB38C8FC29BA617400D68386 /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 		FB38C8FE29BA618100D68386 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
-		FB47B26829BFA92F00027EB8 /* WeatherCondition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCondition.swift; sourceTree = "<group>"; };
 		FB4D0FA629BDD3C4009B4438 /* thunderstorm.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = thunderstorm.gif; sourceTree = "<group>"; };
 		FB4D0FA829BDD450009B4438 /* rain.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = rain.gif; sourceTree = "<group>"; };
 		FB4D0FAC29BDD5BC009B4438 /* snow.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = snow.gif; sourceTree = "<group>"; };
@@ -86,6 +85,7 @@
 		FB6046AB29B8D0E800A5C15E /* MyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCell.swift; sourceTree = "<group>"; };
 		FB6046AC29B8D0E800A5C15E /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		FB8F482029BC805600078120 /* WeatherModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WeatherModel.xcdatamodel; sourceTree = "<group>"; };
+		FB90F4AA29CB92700080FEFD /* WeatherConditionId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherConditionId.swift; sourceTree = "<group>"; };
 		FB9A97BB29C0E70F00E5B96E /* rainNight.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = rainNight.gif; sourceTree = "<group>"; };
 		FB9A97BD29C0E88200E5B96E /* clearskyNight.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = clearskyNight.gif; sourceTree = "<group>"; };
 		FB9A97BF29C0E88900E5B96E /* snowNight.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = snowNight.gif; sourceTree = "<group>"; };
@@ -162,8 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				FB4D0FB029BDFEF4009B4438 /* Gifs */,
-				FB60467C29B8D08900A5C15E /* AppDelegate.swift */,
-				FB60467E29B8D08900A5C15E /* SceneDelegate.swift */,
+				FB90F4AC29CB9BC80080FEFD /* Scene */,
 				FB8F481F29BC805600078120 /* WeatherModel.xcdatamodeld */,
 				FB60468529B8D08A00A5C15E /* Assets.xcassets */,
 				FB60468729B8D08A00A5C15E /* LaunchScreen.storyboard */,
@@ -204,7 +203,7 @@
 				FB6046A329B8D0C700A5C15E /* GeoData.swift */,
 				FB6046A129B8D0C700A5C15E /* WeatherData.swift */,
 				FB4D0FB829BE7375009B4438 /* BorderActivity.swift */,
-				FB47B26829BFA92F00027EB8 /* WeatherCondition.swift */,
+				FB90F4AA29CB92700080FEFD /* WeatherConditionId.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -222,6 +221,15 @@
 				FB60469429B8D0B700A5C15E /* ViewSettings.swift */,
 			);
 			path = EasyWay;
+			sourceTree = "<group>";
+		};
+		FB90F4AC29CB9BC80080FEFD /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				FB60467C29B8D08900A5C15E /* AppDelegate.swift */,
+				FB60467E29B8D08900A5C15E /* SceneDelegate.swift */,
+			);
+			path = Scene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -357,6 +365,7 @@
 				FB60467D29B8D08900A5C15E /* AppDelegate.swift in Sources */,
 				FB6046AE29B8D0E800A5C15E /* MyCell.swift in Sources */,
 				FB38C8FD29BA617400D68386 /* DetailVC.swift in Sources */,
+				FB90F4AB29CB92700080FEFD /* WeatherConditionId.swift in Sources */,
 				FB6046A929B8D0D500A5C15E /* NetWorkService.swift in Sources */,
 				FB6046AD29B8D0E800A5C15E /* MainViewVC.swift in Sources */,
 				FB60469F29B8D0B700A5C15E /* TextFieldExtension.swift in Sources */,
@@ -366,7 +375,6 @@
 				FB6046A729B8D0C700A5C15E /* GeoData.swift in Sources */,
 				FB8F482129BC805600078120 /* WeatherModel.xcdatamodeld in Sources */,
 				FB0B319029C7234D00C931CF /* TimeWorker.swift in Sources */,
-				FB47B26929BFA92F00027EB8 /* WeatherCondition.swift in Sources */,
 				FB60469A29B8D0B700A5C15E /* ButtonExtension.swift in Sources */,
 				FB60469E29B8D0B700A5C15E /* Helper.swift in Sources */,
 				FB60469C29B8D0B700A5C15E /* ViewSettings.swift in Sources */,

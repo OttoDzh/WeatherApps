@@ -17,7 +17,6 @@ class MainViewVC: UIViewController {
     let userDefaults = UserDefaults.standard
     let mainView = MainView()
     var cities = [WeatherData]()
-    var filteredCities = [String]()
     let dayHour = 6...18
     var player : AVAudioPlayer!
     var refreshControl = UIRefreshControl()
@@ -29,7 +28,6 @@ class MainViewVC: UIViewController {
         mainView.searchBar.delegate = self
         mainView.table.delegate = self
         mainView.table.dataSource = self
-        addTargets()
         getCities()
         self.mainView.table.refreshControl = refreshControl
         refreshControl.tintColor = .white
@@ -55,7 +53,6 @@ class MainViewVC: UIViewController {
                 case .satisfied:
                     print("Intenet connected")
                 case .unsatisfied:
-                    self.mainView.addCityButton.isHidden = true
                     self.mainView.weatherLabel.textColor = .red
                     self.mainView.weatherLabel.text = "Check your internet connection"
                 case .requiresConnection:
@@ -66,45 +63,12 @@ class MainViewVC: UIViewController {
         }
     }
     
-    func addTargets() {
-        mainView.addCityButton.addTarget(self, action: #selector(addCity), for: .touchUpInside)
-    }
-    
     func playSound(resource: String) {
         let url = Bundle.main.url(forResource: resource, withExtension: "mp3")
         player = try! AVAudioPlayer(contentsOf: url!)
         player.play()
     }
     
-    @objc func addCity() {
-        let alertController = UIAlertController(title: "AddCity", message: "Enter city name", preferredStyle: .alert)
-        alertController.addTextField {(textfield: UITextField!) -> Void in
-            textfield.placeholder = "City name"
-        }
-        let saveAction = UIAlertAction(title: "Add", style: .default, handler: { alert -> Void in
-            let firsTexField = alertController.textFields![0] as UITextField
-            guard let cityname = firsTexField.text else { return }
-            NetworkService.getLatLon(city: cityname) { latlon in
-                guard  ((latlon.first?.localNames?.values.contains("\(cityname)")) != nil) else {return}
-                NetworkService.getWeather(latitude: latlon.first!.lat, longitute: latlon.first!.lon) { weather in
-                    let weatherS = WeatherData(weather: weather.weather, main: weather.main, wind: weather.wind, name: latlon.first!.name, timezone: weather.timezone, id: weather.id)
-                    self.cities.append(weatherS)
-                    var citiarray = self.userDefaults.stringArray(forKey: "Citiarray")
-                    citiarray?.append(cityname)
-                    self.userDefaults.set(citiarray, forKey: "Citiarray")
-                    DispatchQueue.main.async{
-                        self.mainView.table.reloadData()
-                    }
-                }
-                self.playSound(resource: "addCitySound")
-            }
-        }
-        )
-        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
-        alertController.addAction(saveAction)
-        alertController.addAction(cancelAction)
-        self.present(alertController, animated: true)
-    }
     func getCities() {
         var newArrayCiti = userDefaults.stringArray(forKey: "Citiarray")
         if newArrayCiti == nil  {
@@ -156,26 +120,29 @@ extension MainViewVC: UITableViewDelegate, UITableViewDataSource {
         let localHour = TimeWorker.getCurrentTime(time: doubleTz)
         let currentTime = TimeWorker.getFormattedLocalTime(time: doubleTz)
         cell.localTimeLabel.text = "\(currentTime)"
-        if cell.descrLabel.text == WeatherConditions.rain.rawValue && dayHour.contains(localHour) {
-            cell.gifBg.animate(withGIFNamed: "rain")
-        } else if cell.descrLabel.text == WeatherConditions.rain.rawValue  {
-            cell.gifBg.animate(withGIFNamed: "rainNight")
-        } else if cell.descrLabel.text == WeatherConditions.snow.rawValue && dayHour.contains(localHour) {
-            cell.gifBg.animate(withGIFNamed: "snow")
-        } else if cell.descrLabel.text == WeatherConditions.snow.rawValue  {
-            cell.gifBg.animate(withGIFNamed: "snowNight")
-        } else if cell.descrLabel.text == WeatherConditions.clouds.rawValue && dayHour.contains(localHour) {
+        let weatherId = self.cities[indexPath.row].weather.first!.id
+        if WeatherConditionsId.clouds.contains(weatherId) && dayHour.contains(localHour) {
             cell.gifBg.animate(withGIFNamed: "clouds")
-        } else if  cell.descrLabel.text == WeatherConditions.clouds.rawValue  {
+        } else if WeatherConditionsId.clouds.contains(weatherId) {
             cell.gifBg.animate(withGIFNamed: "cloudsNight")
-        } else if cell.descrLabel.text == WeatherConditions.clearsky.rawValue && dayHour.contains(localHour) {
+        } else if WeatherConditionsId.clear.contains(weatherId) && dayHour.contains(localHour) {
             cell.gifBg.animate(withGIFNamed: "clearsky")
-        } else if cell.descrLabel.text == WeatherConditions.clearsky.rawValue  {
+        } else if WeatherConditionsId.clear.contains(weatherId) {
             cell.gifBg.animate(withGIFNamed: "clearskyNight")
-        } else if cell.descrLabel.text == WeatherConditions.thunerstorm.rawValue {
-            cell.gifBg.animate(withGIFNamed: "thunderstorm")
-        }  else if cell.descrLabel.text == WeatherConditions.drizzle.rawValue {
+        } else if WeatherConditionsId.rain.contains(weatherId) && dayHour.contains(localHour) {
+            cell.gifBg.animate(withGIFNamed: "rain")
+        } else if WeatherConditionsId.rain.contains(weatherId) {
+            cell.gifBg.animate(withGIFNamed: "rainNight")
+        } else if WeatherConditionsId.snow.contains(weatherId) && dayHour.contains(localHour) {
+            cell.gifBg.animate(withGIFNamed: "snow")
+        } else if WeatherConditionsId.snow.contains(weatherId) {
+            cell.gifBg.animate(withGIFNamed: "snowNight")
+        } else if WeatherConditionsId.drizzle.contains(weatherId) {
             cell.gifBg.animate(withGIFNamed: "drizzle")
+        } else if WeatherConditionsId.atmosphere.contains(weatherId) {
+            cell.gifBg.animate(withGIFNamed: "clearsky")
+        } else if WeatherConditionsId.thunderStorm.contains(weatherId) {
+            cell.gifBg.animate(withGIFNamed: "thunderstorm")
         } else {
             cell.backgroundColor = .black
         }
@@ -195,15 +162,16 @@ extension MainViewVC: UITableViewDelegate, UITableViewDataSource {
         let localHour = TimeWorker.getCurrentTime(time: doubleTz)
         let currentTime = TimeWorker.getFormattedLocalTime(time: doubleTz)
         vc.detailView.localTimeLabel.text = "Local time \(currentTime)"
-        if self.cities[indexPath.row].weather.first?.main == WeatherConditions.clouds.rawValue && dayHour.contains(localHour) {
+        let weatherId = self.cities[indexPath.row].weather.first!.id
+        if WeatherConditionsId.clouds.contains(weatherId) && dayHour.contains(localHour) {
             vc.detailView.gifBg.animate(withGIFNamed: "clouds")
-        } else if self.cities[indexPath.row].weather.first?.main == WeatherConditions.clouds.rawValue {
+        } else if WeatherConditionsId.clouds.contains(weatherId){
             vc.detailView.gifBg.animate(withGIFNamed: "cloudsNight")
-        } else if self.cities[indexPath.row].weather.first?.main == WeatherConditions.snow.rawValue && dayHour.contains(localHour) {
+        } else if WeatherConditionsId.snow.contains(weatherId) && dayHour.contains(localHour) {
             vc.detailView.gifBg.animate(withGIFNamed: "snow")
-        } else if self.cities[indexPath.row].weather.first?.main == WeatherConditions.snow.rawValue  {
+        } else if WeatherConditionsId.snow.contains(weatherId)   {
             vc.detailView.gifBg.animate(withGIFNamed: "snowNight")
-        } else if self.cities[indexPath.row].weather.first?.main == WeatherConditions.rain.rawValue && dayHour.contains(localHour) {
+        } else if WeatherConditionsId.rain.contains(weatherId) && dayHour.contains(localHour)  {
             vc.detailView.cityName.textColor = .black
             vc.detailView.feelsLikeLabel.textColor = .black
             vc.detailView.tempLabel.textColor = .black
@@ -211,19 +179,22 @@ extension MainViewVC: UITableViewDelegate, UITableViewDataSource {
             vc.detailView.descLabel.textColor = .black
             vc.detailView.windSpeedlabel.textColor = .black
             vc.detailView.gifBg.animate(withGIFNamed: "rain")
-        } else if self.cities[indexPath.row].weather.first?.main == WeatherConditions.rain.rawValue {
+        } else if WeatherConditionsId.rain.contains(weatherId) {
             vc.detailView.gifBg.animate(withGIFNamed: "rainNight")
-        } else if self.cities[indexPath.row].weather.first?.main == WeatherConditions.clearsky.rawValue && dayHour.contains(localHour) {
+        } else if WeatherConditionsId.clear.contains(weatherId) && dayHour.contains(localHour) {
             vc.detailView.gifBg.animate(withGIFNamed: "clearsky")
-        } else if self.cities[indexPath.row].weather.first?.main == WeatherConditions.clearsky.rawValue {
+        } else if WeatherConditionsId.clear.contains(weatherId) {
             vc.detailView.gifBg.animate(withGIFNamed: "clearskyNight")
-        } else if self.cities[indexPath.row].weather.first?.main == WeatherConditions.thunerstorm.rawValue {
+        } else if WeatherConditionsId.thunderStorm.contains(weatherId)  {
             vc.detailView.gifBg.animate(withGIFNamed: "thunderstorm")
-        } else if self.cities[indexPath.row].weather.first?.main == WeatherConditions.drizzle.rawValue{
+        } else if WeatherConditionsId.drizzle.contains(weatherId) {
             vc.detailView.gifBg.animate(withGIFNamed: "drizzle")
+        } else if WeatherConditionsId.atmosphere.contains(weatherId) {
+            vc.detailView.gifBg.animate(withGIFNamed: "clearsky")
         } else {
             vc.detailView.backgroundColor = .black
         }
+        vc.delegate = self
         self.present(vc, animated: true)
     }
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -245,7 +216,6 @@ extension MainViewVC: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension UIImage {
-    
     func addBackgroundCircle(_ color: UIColor?) -> UIImage? {
         let circleDiameter = max(size.width * 1.3, size.height * 1.3)
         let circleRadius = circleDiameter * 0.5
@@ -270,33 +240,35 @@ extension UIImage {
 
 extension MainViewVC: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText != "" {
-            let filteredCities = self.cities.filter({$0.name.contains(searchText)})
-            self.cities = filteredCities
-            mainView.table.reloadData()
-        } else {
-            self.cities.removeAll()
-            let citiarray = self.userDefaults.stringArray(forKey: "Citiarray")
-            for citi in citiarray! {
-                NetworkService.getLatLon(city: citi) { latlon in
-                    NetworkService.getWeather(latitude: latlon.first!.lat, longitute: latlon.first!.lon) { weather in
-                        let weatherS = WeatherData(weather: weather.weather, main: weather.main, wind: weather.wind, name: latlon.first!.name, timezone: weather.timezone, id: weather.id)
-                        DispatchQueue.main.async {
-                            self.cities.append(weatherS)
-                            self.mainView.table.reloadData()
-                        }
+        if searchText != ""  {
+            NetworkService.getLatLon(city: searchText) { latlon in
+                guard  ((latlon.first?.localNames?.values.contains("\(searchText)")) != nil) else {return}
+                NetworkService.getWeather(latitude: latlon.first!.lat, longitute: latlon.first!.lon) { weather in
+                    let weatherS = WeatherData(weather: weather.weather, main: weather.main, wind: weather.wind, name: latlon.first!.name, timezone: weather.timezone, id: weather.id)
+                    self.cities.removeAll()
+                    self.cities.append(weatherS)
+                    DispatchQueue.main.async {
+                        self.mainView.table.reloadData()
                     }
                 }
             }
+        } else {
+            self.cities.removeAll()
+            getCities()
         }
     }
-    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
             searchBar.resignFirstResponder()
     }
-      
     
+    
+}
 
+extension MainViewVC:UpdateViews {
+    func reloadUI() {
+        mainView.searchBar.text = ""
+        getCities()
+    }    
 }
 
 

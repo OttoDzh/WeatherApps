@@ -8,9 +8,7 @@
 import UIKit
 
 class MainView: UIView {
-
     let weatherLabel = UILabel(text: "Weather", font: ODFonts.titleLabelFont)
-    let addCityButton = UIButton(title: "AddCity", bgColor: .black, textColor: .white, font: ODFonts.avenirFont, cornerRadius: 12)
     let searchBar = UISearchBar()
     let table = UITableView()
     
@@ -42,17 +40,15 @@ class MainView: UIView {
     func setupConstraints() {
         addSubview(table)
         addSubview(weatherLabel)
-        addSubview(addCityButton)
+        
         addSubview(searchBar)
-        Helper.tamicOff(views: [table,weatherLabel,addCityButton,searchBar])
+        Helper.tamicOff(views: [table,weatherLabel,searchBar])
         NSLayoutConstraint.activate([table.topAnchor.constraint(equalTo: topAnchor, constant: 150),
                                      table.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
                                      table.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
                                      table.bottomAnchor.constraint(equalTo: bottomAnchor),
                                      weatherLabel.topAnchor.constraint(equalTo: topAnchor, constant: 48),
                                      weatherLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
-                                     addCityButton.topAnchor.constraint(equalTo: topAnchor, constant: 48),
-                                     addCityButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
                                      weatherLabel.widthAnchor.constraint(equalToConstant: 350),
                                      weatherLabel.heightAnchor.constraint(equalToConstant: 50),
                                      searchBar.topAnchor.constraint(equalTo: weatherLabel.bottomAnchor, constant: 8),

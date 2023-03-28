@@ -18,6 +18,7 @@ class DetailView: UIView {
     let windSpeedlabel = UILabel(text: "", font: ODFonts.avenirFont)
     let gifBg = GIFImageView()
     let localTimeLabel = UILabel(text: "Local time 14:54", font: ODFonts.avenirFont)
+    let addCityButton = UIButton(title: "Add", bgColor: .clear, textColor: .white, font: ODFonts.avenirFont, cornerRadius: 0)
     
     init() {
         super.init(frame: CGRect())
@@ -53,7 +54,8 @@ class DetailView: UIView {
         addSubview(descLabel)
         addSubview(windSpeedlabel)
         addSubview(localTimeLabel)
-        Helper.tamicOff(views: [cityName,tempLabel,gifBg,feelsLikeLabel,borderActivityLabel,descLabel,windSpeedlabel,localTimeLabel])
+        addSubview(addCityButton)
+        Helper.tamicOff(views: [cityName,tempLabel,gifBg,feelsLikeLabel,borderActivityLabel,descLabel,windSpeedlabel,localTimeLabel,addCityButton])
         
         NSLayoutConstraint.activate([
                                      cityName.topAnchor.constraint(equalTo: topAnchor, constant: 50),
@@ -76,7 +78,9 @@ class DetailView: UIView {
                                      windSpeedlabel.topAnchor.constraint(equalTo: descLabel.bottomAnchor, constant: 12),
                                      windSpeedlabel.centerXAnchor.constraint(equalTo: centerXAnchor),
                                      localTimeLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
-                                     localTimeLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24)])
+                                     localTimeLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24),
+                                     addCityButton.topAnchor.constraint(equalTo: topAnchor, constant: 24),
+                                     addCityButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)])
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
